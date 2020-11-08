@@ -113,9 +113,9 @@ int main()
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // mode fil de fer
 
 	// Load and create texture
-	unsigned int texture;
-	glGenTextures(1, &texture);
-	glBindTexture(GL_TEXTURE_2D, texture);
+	unsigned int texture1;
+	glGenTextures(1, &texture1);
+	glBindTexture(GL_TEXTURE_2D, texture1);
 	// définit les options de la texture actuellement liée
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -124,6 +124,7 @@ int main()
 
 	// charge et génère la texture
 	int width, height, nrChannels;
+	stbi_set_flip_vertically_on_load(true); // tell stb_image.h to flip loaded texture's on the y-axis.
 	unsigned char* data = stbi_load("container.jpg", &width, &height, &nrChannels, 0);
 	if (data)
 	{
@@ -136,12 +137,39 @@ int main()
 	}
 	//libérer l’espace mémoire contenant l’image
 	stbi_image_free(data);
+
+	//------------------------------------------------------------------------------------------------------------------------------------
+		// Load and create texture 2
+	unsigned int texture2;
+	glGenTextures(1, &texture2);
+	glBindTexture(GL_TEXTURE_2D, texture2);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	data = stbi_load("awesomeface.png", &width, &height, &nrChannels, 0);
+	if (data)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+	{
+		std::cout << red << "Failed to load texture 2" << white << std::endl;
+	}
+	stbi_image_free(data);
+	//--------------------------------------------------------------------------------------------------------------
 	
 	std::cout << "depth bits:" << settings.depthBits << std::endl;
 	std::cout << "stencil bits:" << settings.stencilBits << std::endl;
 	std::cout << "antialiasing level:" << settings.antialiasingLevel << std::endl;
 	std::cout << "version:" << settings.majorVersion << "." << settings.minorVersion << std::endl;
 
+	myShaderProgram.use(); // n’oubliez pas d’activer le shader avant de définir les variables uniformes
+	glUniform1i(glGetUniformLocation(myShaderProgram.ID, "texture1"), 0);
+	myShaderProgram.setInt("texture2", 1);
 
 	// boucle principal
 	bool running = true;
@@ -168,12 +196,15 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		// bind texture
-		glBindTexture(GL_TEXTURE_2D, texture);
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, texture1);
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, texture2);
 
 		//------------------------------------------------------------------------------------------------------------
 		//												Rendu du triangle
 		
-		myShaderProgram.use();
+
 		glBindVertexArray(VAO);
 		
 		//glDrawArrays(GL_TRIANGLES, 0, 3); // dessiner un triangle à 3 sommets
