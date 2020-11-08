@@ -6,6 +6,10 @@
 #include <cmath>
 #include "stb_image.h"
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 int main()
 {
 
@@ -55,9 +59,9 @@ int main()
 
 
 	/*
-	*----------------------------------------------------------------------------------------------------
-	*											DRAW OPENGL
-	* --------------------------------------------------------------------------------------------------
+	*---------------------------------------------------------------------------------------------------------------------------------
+	*															DRAW OPENGL
+	* -------------------------------------------------------------------------------------------------------------------------------
 	*/
 
 	Shader myShaderProgram("myShader.vsd", "myShader.fsd");
@@ -167,6 +171,7 @@ int main()
 	std::cout << "antialiasing level:" << settings.antialiasingLevel << std::endl;
 	std::cout << "version:" << settings.majorVersion << "." << settings.minorVersion << std::endl;
 
+
 	myShaderProgram.use(); // n’oubliez pas d’activer le shader avant de définir les variables uniformes
 	glUniform1i(glGetUniformLocation(myShaderProgram.ID, "texture1"), 0);
 	myShaderProgram.setInt("texture2", 1);
@@ -200,6 +205,16 @@ int main()
 		glBindTexture(GL_TEXTURE_2D, texture1);
 		glActiveTexture(GL_TEXTURE1);
 		glBindTexture(GL_TEXTURE_2D, texture2);
+
+		// create transformations
+		glm::mat4 transform = glm::mat4(1.0f); // vérifier qu'on utilise une matrice d'identité pour pouvoir translater/scaler
+		transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));
+		transform = glm::rotate(transform, clock.getElapsedTime().asSeconds(), glm::vec3(0.0f, 0.0f, 1.0f)); //vec3(0,0,1) est l'axe z
+		transform = glm::scale(transform, glm::vec3(0.5, 0.5, 0.5));
+
+		//myShaderProgram.use(); // n’oubliez pas d’activer le shader avant de définir les variables uniformes
+		unsigned int transformLoc = glGetUniformLocation(myShaderProgram.ID, "transform");
+		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
 
 		//------------------------------------------------------------------------------------------------------------
 		//												Rendu du triangle

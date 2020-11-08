@@ -11,7 +11,6 @@ uniform sampler2D texture2;
 
 void main()
 {
-    //FragColor = vec4(ourPosition,1.0);
 
     // Pour obtenir une image plus folklo, on peut mixer la texture avec les couleurs des sommets. On multiplie simplement la couleur de la texture avec la couleur du sommet dans le fragment shader :
     //FragColor = texture(ourTexture, texCoord) * vec4(ourColor,1.0);
