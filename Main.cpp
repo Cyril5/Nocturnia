@@ -12,6 +12,8 @@
 
 int main()
 {
+	const int WINDOW_WIDTH = 800;
+	const int WINDOW_HEIGHT = 600;
 
 	sf::ContextSettings settings;
 	settings.depthBits = 24; // nombre de bits par pixel pour le depth buffer (16,24 ou 32)
@@ -46,7 +48,7 @@ int main()
 	};
 
 
-	sf::Window window(sf::VideoMode(800, 600), "OpenGL", sf::Style::Default, settings);
+	sf::Window window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "OpenGL", sf::Style::Default, settings);
 	window.setVerticalSyncEnabled(true);
 
 	glewExperimental = GL_TRUE; // Nécessaire dans le profil de base
@@ -207,17 +209,32 @@ int main()
 		glBindTexture(GL_TEXTURE_2D, texture2);
 
 		// create transformations
-		glm::mat4 transform = glm::mat4(1.0f); // vérifier qu'on utilise une matrice d'identité pour pouvoir translater/scaler
-		transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));
-		transform = glm::rotate(transform, clock.getElapsedTime().asSeconds(), glm::vec3(0.0f, 0.0f, 1.0f)); //vec3(0,0,1) est l'axe z
-		transform = glm::scale(transform, glm::vec3(0.5, 0.5, 0.5));
+		//glm::mat4 transform = glm::mat4(1.0f); // vérifier qu'on utilise une matrice d'identité pour pouvoir translater/scaler
+		//transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));
+		//transform = glm::rotate(transform, clock.getElapsedTime().asSeconds(), glm::vec3(0.0f, 0.0f, 1.0f)); //vec3(0,0,1) est l'axe z
+		//transform = glm::scale(transform, glm::vec3(0.5, 0.5, 0.5));
+
+		glm::mat4 model = glm::mat4(1.0f);
+		model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+
+		glm::mat4 view = glm::mat4(1.0f);
+		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+		glm::mat4 projection = glm::mat4(1.0f);
+		projection = glm::perspective(glm::radians(45.0f), (float)WINDOW_WIDTH / WINDOW_HEIGHT, 0.1f, 100.0f);
 
 		//myShaderProgram.use(); // n’oubliez pas d’activer le shader avant de définir les variables uniformes
-		unsigned int transformLoc = glGetUniformLocation(myShaderProgram.ID, "transform");
-		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
+		unsigned int modelLoc = glGetUniformLocation(myShaderProgram.ID, "model");
+		unsigned int viewLoc = glGetUniformLocation(myShaderProgram.ID, "view");
+
+		// pass them to the shaders (3 different ways)
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, &view[0][0]);
+		// note: currently we set the projection matrix each frame, but since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
+		myShaderProgram.setMat4("projection", projection);
+
 
 		//------------------------------------------------------------------------------------------------------------
-		//												Rendu du triangle
+		//												Rendu du Cube
 		
 
 		glBindVertexArray(VAO);

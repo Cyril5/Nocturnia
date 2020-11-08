@@ -1,3 +1,4 @@
 ﻿  Main.cpp
 D:\PROG\Projects C++\Nocturnia\Nocturnia\Shader.h(11,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\PROG\Projects C++\Nocturnia\Nocturnia\Shader.h(12,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   Nocturnia.vcxproj -> D:\PROG\Projects C++\Nocturnia\Debug\Nocturnia.exe
