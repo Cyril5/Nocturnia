@@ -1,0 +1,18 @@
+#version 330 core
+layout (location = 0) in vec3 aPos; // La variable aPos a l'attribut de position 0
+layout (location = 1) in vec3 aColor; // La variable aColor a l'attribut de position 1
+layout (location = 2) in vec2 aTexCoord; // La variable aTextCoord a l'attribut de position 2
+  
+
+//out vec3 ourPosition;
+out vec3 ourColor;  // transmettre une couleur au fragment shader
+out vec2 texCoord;
+
+
+void main()
+{
+    gl_Position = vec4(aPos, 1.0); // un vec3 est utilisé pour construire un vec4
+    ourColor = aColor; // affecter ourColor avec l'entrée color issue des  données vertex
+    //ourPosition = aPos;
+    texCoord = aTexCoord;
+}
