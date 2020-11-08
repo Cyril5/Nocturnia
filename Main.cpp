@@ -22,30 +22,73 @@ int main()
 	settings.majorVersion = 3;
 	settings.minorVersion = 3;
 	//settings.attributeFlags = sf::ContextSettings::Core;
-
-	//float vertices[] = { // Sommets
-
-	//// positions
-	//0.5f, -0.5f, 0.0f,
-	//-0.5f, -0.5f, 0.0f,
-	//0.0f,  0.5f, 0.0f,
-	//};
+	
+	const float FIELD_OF_VIEW = 45.0f; // Camera FOV
 
 	float vertices[] = { // Sommets
+		// Vertex					// Texture Coords
+		-0.5f, -0.5f, -0.5f,		0.0f, 0.0f,
+		 0.5f, -0.5f, -0.5f,		1.0f, 0.0f,
+		 0.5f,  0.5f, -0.5f,		1.0f, 1.0f,
+		 0.5f,  0.5f, -0.5f,		1.0f, 1.0f,
+		-0.5f,  0.5f, -0.5f,		0.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f,		0.0f, 0.0f,
 
-		// positions			// colors			// texture coords
-		0.5f,0.5f, 0.0f,		1.0f, 0.0f, 0.0f,	1.0f,1.0f, // en haut à droite
-		0.5f,-0.5f, 0.0f,		0.0f, 1.0f, 1.0f,	1.0f,0.0f, // en bas à droite
-		-0.5f,-0.5f, 0.0f,		0.0f,0.0f,1.0f,		0.0f, 0.0f, // bottom left
-		-0.5f,0.5f,0.0f,		1.0f,1.0f,0.0f,		0.0f, 1.0f, // top left
+		-0.5f, -0.5f,  0.5f,		0.0f, 0.0f,
+		 0.5f, -0.5f,  0.5f,		1.0f, 0.0f,
+		 0.5f,  0.5f,  0.5f,		1.0f, 1.0f,
+		 0.5f,  0.5f,  0.5f,		1.0f, 1.0f,
+		-0.5f,  0.5f,  0.5f,		0.0f, 1.0f,
+		-0.5f, -0.5f,  0.5f,		0.0f, 0.0f,
+
+		-0.5f,  0.5f,  0.5f,		1.0f, 0.0f,
+		-0.5f,  0.5f, -0.5f,		1.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f,		0.0f, 1.0f,
+		-0.5f, -0.5f, -0.5f,		0.0f, 1.0f,
+		-0.5f, -0.5f,  0.5f,		0.0f, 0.0f,
+		-0.5f,  0.5f,  0.5f,		1.0f, 0.0f,
+
+		 0.5f,  0.5f,  0.5f,		1.0f, 0.0f,
+		 0.5f,  0.5f, -0.5f,		1.0f, 1.0f,
+		 0.5f, -0.5f, -0.5f,		0.0f, 1.0f,
+		 0.5f, -0.5f, -0.5f,		0.0f, 1.0f,
+		 0.5f, -0.5f,  0.5f,		0.0f, 0.0f,
+		 0.5f,  0.5f,  0.5f,		1.0f, 0.0f,
+
+		-0.5f, -0.5f, -0.5f,		0.0f, 1.0f,
+		 0.5f, -0.5f, -0.5f,		1.0f, 1.0f,
+		 0.5f, -0.5f,  0.5f,		1.0f, 0.0f,
+		 0.5f, -0.5f,  0.5f,		1.0f, 0.0f,
+		-0.5f, -0.5f,  0.5f,		0.0f, 0.0f,
+		-0.5f, -0.5f, -0.5f,		0.0f, 1.0f,
+
+		-0.5f,  0.5f, -0.5f,		0.0f, 1.0f,
+		 0.5f,  0.5f, -0.5f,		1.0f, 1.0f,
+		 0.5f,  0.5f,  0.5f,		1.0f, 0.0f,
+		 0.5f,  0.5f,  0.5f,		1.0f, 0.0f,
+		-0.5f,  0.5f,  0.5f,		0.0f, 0.0f,
+		-0.5f,  0.5f, -0.5f,		0.0f, 1.0f
+	};
+
+	glm::vec3 cubePositions[] = {
+		glm::vec3(0.0f,  0.0f,  0.0f),
+		glm::vec3(2.0f,  5.0f, -15.0f),
+		glm::vec3(-1.5f, -2.2f, -2.5f),
+		glm::vec3(-3.8f, -2.0f, -12.3f),
+		glm::vec3(2.4f, -0.4f, -3.5f),
+		glm::vec3(-1.7f,  3.0f, -7.5f),
+		glm::vec3(1.3f, -2.0f, -2.5f),
+		glm::vec3(1.5f,  2.0f, -2.5f),
+		glm::vec3(1.5f,  0.2f, -1.5f),
+		glm::vec3(-1.3f,  1.0f, -1.5f)
 	};
 
 	
-	// EBO : Element Buffer Object
-	unsigned int indices[] = {
-		0,1,3, // Premier triangle
-		1,2,3 // Deuxième triangle
-	};
+	//// EBO : Element Buffer Object
+	//unsigned int indices[] = {
+	//	0,1,3, // Premier triangle
+	//	1,2,3 // Deuxième triangle
+	//};
 
 
 	sf::Window window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "OpenGL", sf::Style::Default, settings);
@@ -65,6 +108,9 @@ int main()
 	*															DRAW OPENGL
 	* -------------------------------------------------------------------------------------------------------------------------------
 	*/
+
+	glEnable(GL_DEPTH_TEST); // Activer le Z-Buffer
+
 
 	Shader myShaderProgram("myShader.vsd", "myShader.fsd");
 
@@ -92,20 +138,16 @@ int main()
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 		// 3. copier le tableau d’indices dans un tampon d’éléments
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+		//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 		// Etablir les pointeurs d'attributs des sommets
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
 		glEnableVertexAttribArray(0);
 
-		// Etablir les pointeurs d'attributs de couleurs
-		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*) (3*sizeof(float)));
-		glEnableVertexAttribArray(1);
-
 		// Texture coords
-		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
-		glEnableVertexAttribArray(2);
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+		glEnableVertexAttribArray(1);
 	
 		// note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind
 		// Fin du VBO
@@ -178,6 +220,21 @@ int main()
 	glUniform1i(glGetUniformLocation(myShaderProgram.ID, "texture1"), 0);
 	myShaderProgram.setInt("texture2", 1);
 
+	glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
+	glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
+	glm::vec3 cameraDirectionReversed = glm::normalize(cameraPos - cameraTarget);
+	
+	glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
+
+	glm::vec3 cameraRight = glm::normalize(glm::cross(up, cameraDirectionReversed));
+	glm::vec3 cameraUp = glm::cross(cameraDirectionReversed, cameraRight);
+
+	// PASS PROJECTION MATRIX
+	glm::mat4 projection = glm::mat4(1.0f);
+	projection = glm::perspective(glm::radians(FIELD_OF_VIEW), (float)WINDOW_WIDTH / WINDOW_HEIGHT, 0.1f, 100.0f);
+	// note: currently we set the projection matrix each frame, but since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
+	myShaderProgram.setMat4("projection", projection);
+
 	// boucle principal
 	bool running = true;
 	while (running)
@@ -202,35 +259,22 @@ int main()
 		// effacement tampons de couleur/profondeur
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+
 		// bind texture
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, texture1);
 		glActiveTexture(GL_TEXTURE1);
 		glBindTexture(GL_TEXTURE_2D, texture2);
 
-		// create transformations
-		//glm::mat4 transform = glm::mat4(1.0f); // vérifier qu'on utilise une matrice d'identité pour pouvoir translater/scaler
-		//transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));
-		//transform = glm::rotate(transform, clock.getElapsedTime().asSeconds(), glm::vec3(0.0f, 0.0f, 1.0f)); //vec3(0,0,1) est l'axe z
-		//transform = glm::scale(transform, glm::vec3(0.5, 0.5, 0.5));
-
-		glm::mat4 model = glm::mat4(1.0f);
-		model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-
+		// Camera/view transformation
 		glm::mat4 view = glm::mat4(1.0f);
-		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
-		glm::mat4 projection = glm::mat4(1.0f);
-		projection = glm::perspective(glm::radians(45.0f), (float)WINDOW_WIDTH / WINDOW_HEIGHT, 0.1f, 100.0f);
+		float radius = 10.0f;
+		float camX = sin(clock.getElapsedTime().asSeconds()) * radius;
+		float camZ = cos(clock.getElapsedTime().asSeconds()) * radius;
 
-		//myShaderProgram.use(); // n’oubliez pas d’activer le shader avant de définir les variables uniformes
-		unsigned int modelLoc = glGetUniformLocation(myShaderProgram.ID, "model");
-		unsigned int viewLoc = glGetUniformLocation(myShaderProgram.ID, "view");
-
-		// pass them to the shaders (3 different ways)
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, &view[0][0]);
-		// note: currently we set the projection matrix each frame, but since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
-		myShaderProgram.setMat4("projection", projection);
+		// LOOK AT MATRIX
+		view = glm::lookAt(glm::vec3(camX, 0.0f, camZ), cameraTarget,up);
+		myShaderProgram.setMat4("view", view);
 
 
 		//------------------------------------------------------------------------------------------------------------
@@ -239,9 +283,20 @@ int main()
 
 		glBindVertexArray(VAO);
 		
-		//glDrawArrays(GL_TRIANGLES, 0, 3); // dessiner un triangle à 3 sommets
+		// Dessiner 10 cubes
+		for (unsigned int i = 0; i < 10; i++)
+		{
+			glm::mat4 model = glm::mat4(1.0f);
+			model = glm::translate(model, cubePositions[i]);
+			float angle = 20.0f * i;
+			model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+			myShaderProgram.setMat4("model", model);
+
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
+		
 		// Dessiner les deux triangles grâce aux tableaux d'indices
-		glDrawElements(GL_TRIANGLES, 3*2, GL_UNSIGNED_INT, 0);
+		//glDrawElements(GL_TRIANGLES, 3*2, GL_UNSIGNED_INT, 0);
 		
 		//------------------------------------------------------------------------------------------------------------
 
