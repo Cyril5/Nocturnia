@@ -158,7 +158,7 @@ int main()
 	// Fin du VAO
 	//glBindVertexArray(0);
 
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // mode fil de fer
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // mode fil de fer
 
 	// Load and create texture
 	unsigned int texture1;
@@ -226,6 +226,7 @@ int main()
 	
 	glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
 
+	glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 	glm::vec3 cameraRight = glm::normalize(glm::cross(up, cameraDirectionReversed));
 	glm::vec3 cameraUp = glm::cross(cameraDirectionReversed, cameraRight);
 
@@ -273,7 +274,8 @@ int main()
 		float camZ = cos(clock.getElapsedTime().asSeconds()) * radius;
 
 		// LOOK AT MATRIX
-		view = glm::lookAt(glm::vec3(camX, 0.0f, camZ), cameraTarget,up);
+		//view = glm::lookAt(cameraPos,cameraPos - cameraFront, cameraUp);
+		view = glm::lookAt(glm::vec3(camX, 0.0, camZ), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
 		myShaderProgram.setMat4("view", view);
 
 
