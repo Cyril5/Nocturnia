@@ -8,7 +8,8 @@
 #include <sstream>
 #include <iostream>
 #include <GL\glew.h>
-#include "ConsoleColor.h";
+#include "utils\ConsoleColor.h";
+#include "glm/glm.hpp";
 
 class Shader 
 {
@@ -128,10 +129,20 @@ class Shader
 		//	glUniform4f(glGetUniformLocation(ID, name.c_str()), value);
 		//}
 
-		void setFloat(const std::string& name, float value) const
+		void setFloat(const std::string &name, float value) const
 		{
 			glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
 		}
+
+		void setMat4(const std::string& name, const glm::mat4 &mat) const
+		{
+			glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
+		}
+
+		// Récupère la valeur d'un uniform dans le shader
+		//getUniform(const std::string &name) const {
+		//	return glGetUniformLocation(ID, name.c_str());
+		//}
 };
 
 #endif

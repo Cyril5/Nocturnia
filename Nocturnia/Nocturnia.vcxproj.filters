@@ -9,11 +9,10 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Fichiers de ressources">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{64427418-bb9d-439a-a049-6aa9b5896056}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers sources\utils">
+    <Filter Include="utils">
       <UniqueIdentifier>{0881d039-4e9d-4aa9-b9f6-13f1dd2aa444}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -21,8 +20,8 @@
     <ClCompile Include="Main.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="VAOModel.cpp">
+      <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -40,14 +39,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Shader.h">
-      <Filter>Fichiers sources</Filter>
+    <ClInclude Include="ConsoleColor.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="VAOModel.h">
+      <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="stb_image.h">
-      <Filter>Fichiers sources</Filter>
+      <Filter>utils</Filter>
     </ClInclude>
-    <ClInclude Include="ConsoleColor.h">
-      <Filter>Fichiers sources\utils</Filter>
+    <ClInclude Include="Shader.h">
+      <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
