@@ -12,15 +12,15 @@
     <Filter Include="Engine">
       <UniqueIdentifier>{64427418-bb9d-439a-a049-6aa9b5896056}</UniqueIdentifier>
     </Filter>
-    <Filter Include="utils">
-      <UniqueIdentifier>{0881d039-4e9d-4aa9-b9f6-13f1dd2aa444}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="VAOModel.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Window3D.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>
@@ -37,19 +37,28 @@
     <None Include="C:\SFML\SFML-2.5.1\bin\openal32.dll">
       <Filter>Fichiers sources</Filter>
     </None>
+    <None Include="myShader.fsd">
+      <Filter>Engine</Filter>
+    </None>
+    <None Include="myShader.vsd">
+      <Filter>Engine</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ConsoleColor.h">
-      <Filter>utils</Filter>
-    </ClInclude>
     <ClInclude Include="VAOModel.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="stb_image.h">
-      <Filter>utils</Filter>
-    </ClInclude>
     <ClInclude Include="Shader.h">
       <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Window3D.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="stb_image.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleColor.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

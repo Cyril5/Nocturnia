@@ -8,8 +8,10 @@
 #include <sstream>
 #include <iostream>
 #include <GL\glew.h>
-#include "utils\ConsoleColor.h";
-#include "glm/glm.hpp";
+#include "ConsoleColor.h"
+#include "glm/glm.hpp"
+#include "stb_image.h"
+#define STB_IMAGE_IMPLEMENTATION
 
 class Shader 
 {
@@ -139,10 +141,6 @@ class Shader
 			glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, &mat[0][0]);
 		}
 
-		// Récupère la valeur d'un uniform dans le shader
-		//getUniform(const std::string &name) const {
-		//	return glGetUniformLocation(ID, name.c_str());
-		//}
 };
 
 #endif
