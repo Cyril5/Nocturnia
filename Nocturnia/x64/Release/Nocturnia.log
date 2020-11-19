@@ -1,2 +1,7 @@
-﻿  Main.cpp
-D:\PROG\Projects C++\Nocturnia\Nocturnia\Main.cpp(1,10): fatal error C1083: Impossible d'ouvrir le fichier include : 'SFML/Graphics.hpp' : No such file or directory
+﻿  Model.cpp
+  Generating code
+  15 of 724 functions ( 2.1%) were compiled, the rest were copied from previous compilation.
+    1 functions were new in current compilation
+    12 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Nocturnia.vcxproj -> D:\PROG\Projects C++\Nocturnia\x64\Release\Nocturnia.exe

@@ -78,9 +78,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -122,10 +126,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Libraries\glew-2.1.0\include;C:\Libraries\GL\glm;C:\Libraries\stb;C:\Libraries\assimp-5.0.1\include;C:\Libraries\SFML\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;assimp-vc142-mtd.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Libraries\glew-2.1.0\lib\Release\x64;C:\Libraries\assimp-5.0.1\lib;C:\Libraries\SFML\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -136,33 +143,46 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Libraries\glew-2.1.0\include;C:\Libraries\GL\glm;C:\Libraries\stb;C:\Libraries\assimp-5.0.1\include;C:\Libraries\SFML\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;assimp-vc142-mtd.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Libraries\glew-2.1.0\lib\Release\x64;C:\Libraries\assimp-5.0.1\lib;C:\Libraries\SFML\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\render\Camera.cpp" />
+    <ClCompile Include="kebab.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="VAOModel.cpp" />
-    <ClCompile Include="Window3D.cpp" />
+    <ClCompile Include="Engine\VAOModel.cpp" />
+    <ClCompile Include="Engine\render\Window3D.cpp" />
+    <ClCompile Include="Engine\render\Mesh.cpp" />
+    <ClCompile Include="Engine\render\Model.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="C:\SFML\SFML-2.5.1\bin\openal32.dll" />
-    <None Include="C:\SFML\SFML-2.5.1\bin\sfml-graphics-2.dll" />
-    <None Include="C:\SFML\SFML-2.5.1\bin\sfml-system-2.dll" />
-    <None Include="C:\SFML\SFML-2.5.1\bin\sfml-window-2.dll" />
-    <None Include="myShader.fsd" />
-    <None Include="myShader.vsd" />
+    <None Include="assimp-vc142-mtd.dll" />
+    <None Include="Engine\myShader.fsd" />
+    <None Include="Engine\myShader.vsd" />
+    <None Include="glew32.dll" />
+    <None Include="Nocturnia.aps" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ConsoleColor.h" />
-    <ClInclude Include="Shader.h" />
-    <ClInclude Include="stb_image.h" />
-    <ClInclude Include="VAOModel.h" />
-    <ClInclude Include="Window3D.h" />
+    <ClInclude Include="Engine\render\Camera.h" />
+    <ClInclude Include="Engine\render\Mesh.h" />
+    <ClInclude Include="Engine\render\Model.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="utils\ConsoleColor.h" />
+    <ClInclude Include="Engine\render\Shader.h" />
+    <ClInclude Include="include\stb\stb_image.h" />
+    <ClInclude Include="Engine\VAOModel.h" />
+    <ClInclude Include="Engine\render\Window3D.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Nocturnia.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

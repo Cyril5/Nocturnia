@@ -17,48 +17,66 @@
     <ClCompile Include="Main.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="VAOModel.cpp">
+    <ClCompile Include="Engine\render\Window3D.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Window3D.cpp">
+    <ClCompile Include="Engine\VAOModel.cpp">
       <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\render\Mesh.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\render\Model.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\render\Camera.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="kebab.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="C:\SFML\SFML-2.5.1\bin\sfml-graphics-2.dll">
-      <Filter>Fichiers sources</Filter>
-    </None>
-    <None Include="C:\SFML\SFML-2.5.1\bin\sfml-system-2.dll">
-      <Filter>Fichiers sources</Filter>
-    </None>
-    <None Include="C:\SFML\SFML-2.5.1\bin\sfml-window-2.dll">
-      <Filter>Fichiers sources</Filter>
-    </None>
-    <None Include="C:\SFML\SFML-2.5.1\bin\openal32.dll">
-      <Filter>Fichiers sources</Filter>
-    </None>
-    <None Include="myShader.fsd">
+    <None Include="Engine\myShader.fsd">
       <Filter>Engine</Filter>
     </None>
-    <None Include="myShader.vsd">
+    <None Include="Engine\myShader.vsd">
       <Filter>Engine</Filter>
     </None>
+    <None Include="Nocturnia.aps" />
+    <None Include="glew32.dll" />
+    <None Include="assimp-vc142-mtd.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="VAOModel.h">
+    <ClInclude Include="Engine\render\Window3D.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Shader.h">
+    <ClInclude Include="Engine\VAOModel.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Window3D.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="stb_image.h">
+    <ClInclude Include="utils\ConsoleColor.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="ConsoleColor.h">
+    <ClInclude Include="Engine\render\Mesh.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\render\Shader.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\render\Model.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\render\Camera.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="include\stb\stb_image.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Nocturnia.rc" />
   </ItemGroup>
 </Project>

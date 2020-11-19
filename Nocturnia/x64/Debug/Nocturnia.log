@@ -1,2 +1,2 @@
-﻿  Main.cpp
-D:\PROG\Projects C++\Nocturnia\Nocturnia\Main.cpp(1,10): fatal error C1083: Impossible d'ouvrir le fichier include : 'SFML/Graphics.hpp' : No such file or directory
+﻿  Model.cpp
+  Nocturnia.vcxproj -> D:\PROG\Projects C++\Nocturnia\x64\Debug\Nocturnia.exe
